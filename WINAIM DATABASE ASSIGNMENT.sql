@@ -1,4 +1,7 @@
+
 use university_course_management;
+
+1.--------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Creating the 'students' table
 CREATE TABLE students (
     student_id INT PRIMARY KEY,
@@ -14,6 +17,7 @@ CREATE TABLE professors (
     last_name VARCHAR(50),
     department VARCHAR(50)
 );
+
 -- Creating the 'courses' table
 CREATE TABLE courses (
     course_id INT PRIMARY KEY,
@@ -82,6 +86,7 @@ INSERT INTO enrollments (enrollment_id, student_id, course_id, grade) VALUES
 (409, 109, 309, 3.1),
 (410, 110, 310, 3.9);
 
+2.--------------------------------------------------------------------------------------------------------------------------------------------------------------
 SELECT c.course_name,  COUNT(e.student_id) AS total_students
 FROM enrollments e
 JOIN courses c ON e.course_id = c.course_id
@@ -105,6 +110,10 @@ INSERT INTO enrollments (enrollment_id, student_id, course_id, grade) VALUES
 (436, 103, 302, 3.6),
 (444, 104, 303, 3.7);
 
+SELECT c.course_id, c.course_name, AVG(e.grade) AS average_grade
+FROM enrollments e
+JOIN courses c ON e.course_id = c.course_id
+GROUP BY c.course_id, c.course_name;
 
 
 SELECT student_id, COUNT(course_id) AS courses_enrolled
